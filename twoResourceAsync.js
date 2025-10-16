@@ -27,8 +27,8 @@
     fetchA().then(n=>console.log(n)).catch(n=>console.log(n))
     fetchB().then(n=>console.log(n)).catch(n=>console.log(n))
     // Step 2:-
-    fetchA().then(n=>{console.log("A",n);fetchB().then(n=>console.log("B",n)).catch(n=>console.log("sequential",n))}).catch(n=>console.log(n))
+    fetchA().then(()=>fetchB()).then(n=>console.log("Sequential a and b done",n)).catch(n=>console.log(n))
     // Step 3:-
     Promise.all([fetchA(),fetchB()]).then(n=>console.log("parallel",n)).catch(n=>console.log("parallel",n))
-
-
+    // Step 4:-
+    
