@@ -31,4 +31,14 @@
     // Step 3:-
     Promise.all([fetchA(),fetchB()]).then(n=>console.log("parallel",n)).catch(n=>console.log("parallel",n))
     // Step 4:-
-    
+    function withTimeOut(promise,ms){
+        let timeOut=new Promise((_,reject)=>{
+            setTimeout(()=>{
+                reject(`Rejected because the network is taking more than ${ms}ms`)
+            },ms)
+        })        
+
+        Promise.race([promise,timeOut]).then(()=>console.log("Resolved under time limit")).catch(n=>console.log(n))
+        }
+    withTimeOut(fetchA(),1000)
+    withTimeOut(Promise.all([fetchA().then(()=>{ name: "A fulfilled"}),fetchB()]))
