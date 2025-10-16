@@ -23,7 +23,11 @@
         },Math.floor(Math.random()*1500))
         })
     }
-    
-    
+    // Step 1:-
+    fetchA().then(n=>console.log(n)).catch(n=>console.log(n))
+    fetchB().then(n=>console.log(n)).catch(n=>console.log(n))
+    // Step 2:-
+    fetchA().then(n=>{console.log("A",n);fetchB().then(n=>console.log("B",n)).catch(n=>console.log(n))}).catch(n=>console.log(n))
+
 
 
