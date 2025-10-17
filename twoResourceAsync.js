@@ -41,4 +41,4 @@
         Promise.race([promise,timeOut]).then(()=>console.log("Resolved under time limit")).catch(n=>console.log(n))
         }
     withTimeOut(fetchA(),1000)
-    withTimeOut(Promise.all([fetchA().then(()=>{ name: "A fulfilled"}),fetchB()]))
+    withTimeOut(Promise.all([fetchA(),fetchB()]).then(()=>{name: "A"|"B" +"Fulfilled"}).catch(n=>console.log("Not fulfilled")),1000)
